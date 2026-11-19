@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include "myarrfunc.h"
-
-int main(void) {
+int main(void){
     int arr[MAX_SIZE];
     size_t n = 0;
     size_t k, m;
@@ -9,8 +8,7 @@ int main(void) {
     int min, value;
     long long difference;
     char choice;
-
-    while (1) {
+    while (1){
         printf("\na - Set array size\n");
         printf("b - Fill array\n");
         printf("c - Show array and addresses\n");
@@ -19,83 +17,76 @@ int main(void) {
         printf("f - Indices of elements below k\n");
         printf("g - Exit\n");
         printf("Choice: ");
-
-        if (scanf(" %c", &choice) != 1) {
+        if (scanf(" %c", &choice) != 1){
             break;
         }
-
-        if (choice == 'g') {
+        if (choice == 'g'){
             break;
         }
-
-        switch (choice) {
+        switch (choice){
             case 'a':
-                if (set_size(&n)) {
+                if (set_size(&n)){
                     filled = 0;
                     printf("Array size: %zu\n", n);
-                } else {
+                } else{
                     printf("Invalid size\n");
                     clear_input();
                 }
                 break;
-
             case 'b':
-                if (n == 0) {
+                if (n == 0){
                     printf("Set the array size first\n");
                     break;
                 }
                 filled = 0;
-                if (fill_array(arr, n)) {
+                if (fill_array(arr, n)){
                     filled = 1;
                     printf("Array filled\n");
-                } else {
+                } else{
                     printf("Invalid input\n");
                     clear_input();
                 }
                 break;
-
             case 'c':
-                if (!filled) {
+                if (!filled){
                     printf("Fill the array first\n");
-                } else {
+                } else{
                     show_array(arr, n);
                 }
                 break;
-
             case 'd':
             case 'e':
-                if (!filled) {
+                if (!filled){
                     printf("Fill the array first\n");
                     break;
                 }
                 printf("Enter k and m (0-%zu): ", n - 1);
-                if (scanf("%zu %zu", &k, &m) != 2) {
+                if (scanf("%zu %zu", &k, &m) != 2){
                     printf("Invalid input\n");
                     clear_input();
                     break;
                 }
-                if (choice == 'd') {
-                    if (min_in_range(arr, n, k, m, &min)) {
+                if (choice == 'd'){
+                    if (min_in_range(arr, n, k, m, &min)){
                         printf("Minimum: %d\n", min);
-                    } else {
+                    } else{
                         printf("Invalid range\n");
                     }
-                } else {
-                    if (difference_in_range(arr, n, k, m, &difference)) {
+                } else{
+                    if (difference_in_range(arr, n, k, m, &difference)){
                         printf("Difference: %lld\n", difference);
-                    } else {
+                    } else{
                         printf("Invalid range\n");
                     }
                 }
                 break;
-
             case 'f':
-                if (!filled) {
+                if (!filled){
                     printf("Fill the array first\n");
                     break;
                 }
                 printf("Enter k: ");
-                if (scanf("%d", &value) != 1) {
+                if (scanf("%d", &value) != 1){
                     printf("Invalid input\n");
                     clear_input();
                     break;
@@ -103,12 +94,10 @@ int main(void) {
                 printf("Indices: ");
                 print_indices_below(arr, n, value);
                 break;
-
             default:
                 printf("Unknown menu item\n");
                 clear_input();
         }
     }
-
     return 0;
 }
